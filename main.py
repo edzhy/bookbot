@@ -5,9 +5,9 @@ def main():
     letter_dict = letter_management(book_text)
 
     letters = dict_to_list(letter_dict)
-    sorted_letters = letters.sort(reverse = True, key = sort_on)
+    letters.sort(reverse = True, key = sort_on)
     reporting(path_to_book,letters,num_words)
-
+    
 #builds a visually appealing print statement to see stats of the book
 def reporting(path_to_file, list, num):
     print(f"--- Begin report of {path_to_file} ---")
