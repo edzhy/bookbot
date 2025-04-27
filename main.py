@@ -1,5 +1,10 @@
+from stats import word_count
+import sys
 def main():
-    path_to_book = "books/frankenstein.txt"
+    if len(sys.argv) != 2:
+        print('Usage: python3 main.py <path_to_book>')
+        sys.exit(1)
+    path_to_book = sys.argv[1]
     book_text = file_to_text(path_to_book)
     num_words = word_count(book_text)
     letter_dict = letter_management(book_text)
@@ -11,11 +16,10 @@ def main():
 #builds a visually appealing print statement to see stats of the book
 def reporting(path_to_file, list, num):
     print(f"--- Begin report of {path_to_file} ---")
-    print(f"The book contains {num} words\n")
+    print(f"{num} words found in the document\n")
     for dictionary in list:
-        print(f"The '{dictionary['char']}' character was found {dictionary['count']} times")
+        print(f"{dictionary['char']}: {dictionary['count']}")
     print("--- End report ---")
-
 
 #this function creates a list of dictionaries out of letter_dict
 #and sorts it descending
@@ -27,11 +31,6 @@ def dict_to_list(dict):
 def sort_on(dict):
     return dict["count"]
 
-#takes a string as parameter, 
-#and returns count of words in the string
-def word_count(text):
-    words = text.split()
-    return len(words)
 
 #takes a string as param,
 #returns a dictionary where lower case letter is key
